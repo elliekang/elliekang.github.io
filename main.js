@@ -157,7 +157,8 @@ function start() {
                 // with bands from 0 to height? And then we set the domain
                 // to contain all the letters in the alphabet?
                 return yScale.rangeBand();
-            });
+            })
+            .style("stroke", "black");
     });
 }
 

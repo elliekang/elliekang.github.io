@@ -164,7 +164,6 @@ function updatedBarVar() {
 }
 
 function updatedBarType() {
-  // createBarCharts(data_all, "name");
   d3.selectAll(".myCheckbox").each(function(d) {
     checkType = d3.select(this);
     checked = checkType.property("checked");

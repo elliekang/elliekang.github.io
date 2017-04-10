@@ -34,17 +34,8 @@ function sortValue() {
     return item2[barVar] - item1[barVar];
   });
   createBarCharts(new_data, "name", aggregated_data);
-  // createBarCharts(new_data, "minorGroup");
-
-  // d3.selectAll(".myCheckbox").each(function(d) {
-  //     checkType = d3.select(this);
-  //     checked = checkType.property("checked");
-  //     t = checkType.property("value");
-  //     if(checked){
-  //       createBarCharts(new_data, t);
-  //     }
-  // });
 }
+
 function sortName() {
   //sorting name graph
   // var new_data1 = data_all.sort(function(a, b) {

@@ -71,7 +71,8 @@ function start() {
       d['name'] =  capitalize_words(d['name'].replace(/[^a-zA-Z]+/g, " "))
     })
     data_all = data;
-    createBarCharts(data, "name");
+    aggregated_data = aggregateByType(data, barType);
+    createBarCharts(data, "name", aggregated_data);
     createScatterPlot();
 
   });
@@ -83,4 +84,23 @@ function capitalize_words(str) {
   return str.replace(/\w\S*/g, function(txt) { 
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
+}
+
+function aggregateByType(data, barType) {
+  var avgVar = d3.nest().key(function(d) { return d[barType]; })
+  .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+  .entries(data);
+
+  avgVar.forEach(function(d) {
+      d[barType] = d.key;
+      if (barType == "style") {
+        d[barType] = sushi_style(d);
+      } else if (barType == "majorGroup") {
+        d[barType] = major_group(d);
+      } else if (barType == "minorGroup") {
+        d[barType] = minor_group(d);
+      }
+      d[barVar] = d.values;
+  });
+  return avgVar;
 }

@@ -26,12 +26,15 @@ function removeOneBarChart(svgID) {
 function sortValue() {
   // sort highest to lowest
 
-  new_data = data_all.sort(function(item1, item2) {
+  // new_data = data_all.sort(function(item1, item2) {
+  //   return item2[barVar] - item1[barVar];
+  // });
+  var aggregated_data = aggregateByType(data_all, t);
+  aggregated_data.sortValues(function(item1, item2) {
     return item2[barVar] - item1[barVar];
   });
-
-  // createBarCharts(new_data, "name");
-  createBarCharts(new_data, "minorGroup");
+  createBarCharts(new_data, "name", aggregated_data);
+  // createBarCharts(new_data, "minorGroup");
 
   // d3.selectAll(".myCheckbox").each(function(d) {
   //     checkType = d3.select(this);
@@ -65,8 +68,10 @@ function sortName() {
       checked = checkType.property("checked");
       t = checkType.property("value");
       if(checked){
-        console.log("sort name of : " + t);
-        var new_data2 = data_all.sort(function(a, b) {
+        // console.log("sort name of : " + t);
+        var aggregated_data = aggregateByType(data_all, t);
+        aggregated_data.sortKeys(d3.ascending);
+        // var new_data2 = data_all.sort(function(a, b) {
           // return a[t] - b[t];
           // var a1 = "";
           // var b1 = "";
@@ -80,26 +85,26 @@ function sortName() {
           //   a1 = minor_group(a);
           //   b1 = minor_group(b);
           // }
-          var c1 = minor_group(a);
-          var d1 = minor_group(b);
+        //   var c1 = minor_group(a);
+        //   var d1 = minor_group(b);
 
-          var nameC = c1.toUpperCase(); 
-          var nameD = d1.toUpperCase(); 
+        //   var nameC = c1.toUpperCase(); 
+        //   var nameD = d1.toUpperCase(); 
 
-          if (nameC < nameD) {
-            return -1;
-          }
-          if (nameC > nameD) {
-            return 1;
-          }
-          return 0;
-        });
-        createBarCharts(new_data2, t);
+        //   if (nameC < nameD) {
+        //     return -1;
+        //   }
+        //   if (nameC > nameD) {
+        //     return 1;
+        //   }
+        //   return 0;
+        // });
+        createBarCharts(data_all, t, aggregated_data);
       }
   });
 }
 
-function createBarCharts(data, barType) {
+function createBarCharts(data, barType, avgVar) {
   removeBarCharts(barType);
 
   d3.select('#graphs')
@@ -110,22 +115,6 @@ function createBarCharts(data, barType) {
     .attr("id", barType + "txt")
     .attr("padding", "20px")
     .html("<br/>" + barType +" vs. " + barVar +  "<br/>");
-
-  var avgVar = d3.nest().key(function(d) { return d[barType]; })
-    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
-    .entries(data);
-
-  avgVar.forEach(function(d) {
-      d[barType] = d.key;
-      if (barType == "style") {
-        d[barType] = sushi_style(d);
-      } else if (barType == "majorGroup") {
-        d[barType] = major_group(d);
-      } else if (barType == "minorGroup") {
-        d[barType] = minor_group(d);
-      }
-      d[barVar] = d.values;
-  });
 
   xScale.domain(varDomains[barVar]); // change var later
 
@@ -214,7 +203,8 @@ function updatedBarVar() {
     checked = checkType.property("checked");
     t = checkType.property("value");
     if(checked){
-      createBarCharts(data_all, t);
+      var aggregated_data = aggregateByType(data_all, t);
+      createBarCharts(data_all, t, aggregated_data);
     }
   });
 }
@@ -226,7 +216,8 @@ function updatedBarType() {
     checked = checkType.property("checked");
     t = checkType.property("value");
     if(checked){
-      createBarCharts(data_all, t);
+      var aggregated_data = aggregateByType(data_all, t);
+      createBarCharts(data_all, t, aggregated_data);
     } else {
       removeBarCharts(t);
     }

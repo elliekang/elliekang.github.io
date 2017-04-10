@@ -57,16 +57,13 @@ function sortName() {
 function createBarCharts(data, barType, avgVar) {
   removeBarCharts(barType);
 
-  console.log(d3.select("#graphs"));
-  console.log(d3.select("#additional_graphs"));
-  d3.select(function() {
-      if (barType == "name") {
-        return "#graphs";
-      } else {
-        return "#additional_graphs";
-      }
-    })
-    .append('text')
+  var container;
+  if (barType == "name") {
+    container = d3.select("#graphs");
+  } else {
+    container = d3.select("#additional_graphs");
+  }
+  container.append('text')
     .style("font", "20px times")
     .style("font-weight", "bold") 
     .attr('fill', '#000')

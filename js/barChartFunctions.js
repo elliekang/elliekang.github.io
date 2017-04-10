@@ -29,10 +29,10 @@ function sortValue() {
   // new_data = data_all.sort(function(item1, item2) {
   //   return item2[barVar] - item1[barVar];
   // });
-  var aggregated_data = aggregateByType(data_all, t);
-  aggregated_data.sortValues(function(item1, item2) {
-    return item2[barVar] - item1[barVar];
-  });
+  var aggregated_data = aggregateByType(data_all, t, "value");
+  // aggregated_data.sortValues(function(item1, item2) {
+  //   return item2[barVar] - item1[barVar];
+  // });
   createBarCharts(new_data, "name", aggregated_data);
 }
 
@@ -54,8 +54,8 @@ function sortName() {
   // });
   // createBarCharts(new_data1, "name");
 
-  var aggregated_data = aggregateByType(data_all, "name");
-  aggregated_data.sortKeys(d3.ascending);
+  var aggregated_data = aggregateByType(data_all, "name", "name");
+  // aggregated_data.sortKeys(d3.ascending);
   createBarCharts(data_all, t, aggregated_data);
 
   d3.selectAll(".myCheckbox").each(function(d) {
@@ -63,37 +63,8 @@ function sortName() {
       checked = checkType.property("checked");
       t = checkType.property("value");
       if(checked){
-        // console.log("sort name of : " + t);
         var aggregated_data = aggregateByType(data_all, t);
         aggregated_data.sortKeys(d3.ascending);
-        // var new_data2 = data_all.sort(function(a, b) {
-          // return a[t] - b[t];
-          // var a1 = "";
-          // var b1 = "";
-          // if (t == "style") {
-          //   a1 = sushi_style(a);
-          //   b1 = sushi_style(b);
-          // } else if (t == "majorGroup") {
-          //   a1 = major_group(a);
-          //   b1 = major_group(b);
-          // } else if (t == "minorGroup") {
-          //   a1 = minor_group(a);
-          //   b1 = minor_group(b);
-          // }
-        //   var c1 = minor_group(a);
-        //   var d1 = minor_group(b);
-
-        //   var nameC = c1.toUpperCase(); 
-        //   var nameD = d1.toUpperCase(); 
-
-        //   if (nameC < nameD) {
-        //     return -1;
-        //   }
-        //   if (nameC > nameD) {
-        //     return 1;
-        //   }
-        //   return 0;
-        // });
         createBarCharts(data_all, t, aggregated_data);
       }
   });
@@ -198,7 +169,7 @@ function updatedBarVar() {
     checked = checkType.property("checked");
     t = checkType.property("value");
     if(checked){
-      var aggregated_data = aggregateByType(data_all, t);
+      var aggregated_data = aggregateByType(data_all, t, "none");
       createBarCharts(data_all, t, aggregated_data);
     }
   });
@@ -211,7 +182,7 @@ function updatedBarType() {
     checked = checkType.property("checked");
     t = checkType.property("value");
     if(checked){
-      var aggregated_data = aggregateByType(data_all, t);
+      var aggregated_data = aggregateByType(data_all, t, "none");
       createBarCharts(data_all, t, aggregated_data);
     } else {
       removeBarCharts(t);

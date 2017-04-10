@@ -71,7 +71,7 @@ function start() {
       d['name'] =  capitalize_words(d['name'].replace(/[^a-zA-Z]+/g, " "))
     })
     data_all = data;
-    aggregated_data = aggregateByType(data, "name");
+    aggregated_data = aggregateByType(data, "name", "none");
     createBarCharts(data, "name", aggregated_data);
     createScatterPlot();
 
@@ -86,10 +86,23 @@ function capitalize_words(str) {
   });
 }
 
-function aggregateByType(data, barType) {
-  var avgVar = d3.nest().key(function(d) { return d[barType]; })
-  .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
-  .entries(data);
+function aggregateByType(data, barType, sort_condition) {
+  var avgVar;
+  if (sort_condition == "name") {
+    avgVar = d3.nest().key(function(d) { return d[barType]; })
+    .sortKeys(d3.ascending)
+    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+    .entries(data);
+  } else if (sort_condition == "value") {
+    avgVar = d3.nest().key(function(d) { return d[barType]; })
+    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+    .sortValues(function(item1, item2) {return item2[barVar] - item1[barVar];})
+    .entries(data);
+  } else {
+    avgVar = d3.nest().key(function(d) { return d[barType]; })
+    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+    .entries(data);
+  }
 
   avgVar.forEach(function(d) {
       d[barType] = d.key;

@@ -30,9 +30,6 @@ function sortValue() {
   //   return item2[barVar] - item1[barVar];
   // });
   var aggregated_data = aggregateByType(data_all, t, "value");
-  // aggregated_data.sortValues(function(item1, item2) {
-  //   return item2[barVar] - item1[barVar];
-  // });
   createBarCharts(new_data, "name", aggregated_data);
 }
 
@@ -55,8 +52,7 @@ function sortName() {
   // createBarCharts(new_data1, "name");
 
   var aggregated_data = aggregateByType(data_all, "name", "name");
-  // aggregated_data.sortKeys(d3.ascending);
-  createBarCharts(data_all, t, aggregated_data);
+  createBarCharts(data_all, "name", aggregated_data);
 
   d3.selectAll(".myCheckbox").each(function(d) {
       checkType = d3.select(this);

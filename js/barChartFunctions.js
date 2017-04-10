@@ -82,8 +82,8 @@ function sortName() {
           var c1 = minor_group(a);
           var d1 = minor_group(b);
 
-          var nameC = a1.toUpperCase(); 
-          var nameD = b1.toUpperCase(); 
+          var nameC = c1.toUpperCase(); 
+          var nameD = d1.toUpperCase(); 
 
           if (nameC < nameD) {
             return -1;
@@ -227,9 +227,8 @@ function updatedBarType() {
     t = checkType.property("value");
     if(checked){
       createBarCharts(data_all, t);
-    } 
-    // else {
-    //   removeBarCharts(t);
-    // }
+    } else {
+      removeBarCharts(t);
+    }
   });
 }

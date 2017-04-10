@@ -97,8 +97,7 @@ function aggregateByType(data, barType, sort_condition) {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
     .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })
     .entries(data)
-    .sort(function(a, b){ return d3.ascending(a.values, b.values); });
-    // .sort(function(item1, item2) {return item2[barVar] - item1[barVar];});
+    .sort(function(a, b){ return d3.descending(a.values, b.values); });
   } else {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
     .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })

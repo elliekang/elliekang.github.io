@@ -59,8 +59,7 @@ function sortName() {
       checked = checkType.property("checked");
       t = checkType.property("value");
       if(checked){
-        var aggregated_data = aggregateByType(data_all, t);
-        aggregated_data.sortKeys(d3.ascending);
+        var aggregated_data = aggregateByType(data_all, t, "name");
         createBarCharts(data_all, t, aggregated_data);
       }
   });

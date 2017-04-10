@@ -108,7 +108,8 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
     // console.log(data);
 
     // create svg
-    var svg = d3.select(function(d) {
+    console.log(d3.select("#additional_graphs"));
+    var svg = d3.select(function() {
       if (barType == "name") {
         return "#graphs";
       } else {

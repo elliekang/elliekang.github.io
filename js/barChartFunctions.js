@@ -29,7 +29,7 @@ function sortValue() {
   // new_data = data_all.sort(function(item1, item2) {
   //   return item2[barVar] - item1[barVar];
   // });
-  var aggregated_data = aggregateByType(data_all, t, "value");
+  var aggregated_data = aggregateByType(data_all, "name", "value");
   createBarCharts(new_data, "name", aggregated_data);
 }
 

@@ -57,7 +57,7 @@ function sortName() {
 function createBarCharts(data, barType, avgVar) {
   removeBarCharts(barType);
 
-  d3.select(function() {
+  d3.select(function(d) {
       if (barType == "name") {
         return "#graphs";
       } else {
@@ -108,7 +108,7 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
     // console.log(data);
 
     // create svg
-    var svg = d3.select(function() {
+    var svg = d3.select(function(d) {
       if (barType == "name") {
         return "#graphs";
       } else {

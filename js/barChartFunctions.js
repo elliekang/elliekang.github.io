@@ -113,7 +113,7 @@ function createBarCharts(data, barType) {
     .html("<br/>" + barType +" vs. " + barVar +  "<br/>");
 
   var avgVar = d3.nest().key(function(d) { return d[barType]; })
-    .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })
+    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
     .entries(data);
 
   avgVar.forEach(function(d) {

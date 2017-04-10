@@ -79,3 +79,15 @@ function out_tip(d) {
         .duration(500)
         .style("opacity", 0);
 }
+
+function convert_code_to_str(barType, d) {
+    if (barType == "style") {
+        return sushi_style(d);
+    } else if (barType == "majorGroup") {
+        return major_group(d);
+    } else if (barType == "minorGroup") {
+        return minor_group(d);
+    } else {
+        return d[barType]; 
+    }
+}

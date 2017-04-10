@@ -1,0 +1,87 @@
+body {
+  font: 10px sans-serif;
+}
+
+svg {
+  /*padding: 10px 0 0 10px;*/
+  /*background-color: yellow;*/
+
+}
+
+#graphs {
+  padding-top: 10px;
+}
+
+#horizPlot {
+  fill: blue;
+}
+#verticPlot {
+  fill: red;
+}
+
+
+
+.arc {
+  stroke: #fff;
+}
+
+.label {
+  fill: red;
+  font-size: 15;
+}
+
+#graphs {
+  /*margin-left:150px;*/
+}
+
+#sidebar {
+  float:left;
+  /*position:relative;*/
+  /*top:50px;*/
+  width:200px;
+  height:450px;
+  /*height:100vh;*/
+  background-color: green;
+}
+
+/*-----------------------------*/
+/*scatterplot*/
+
+
+#xAxis-select-div {
+  text-align: center; /*adds left:50%?*/
+  position: relative;
+  left: 15vw;
+}
+#xAxis-select {
+  /*position: relative;*/
+  /*left: 100px; */
+}
+
+#scatterPlot {
+  text-align: center;
+  /*left: 30%;*/
+  /*background-color: yellow;*/
+
+  vertical-align: middle;
+}
+/*#yAxisControl {*/
+#yAxis-select, .yCheck {
+
+  position: relative;
+  /*left: 30%;
+  /*background-color: yellow;*/
+
+  /*float:left;*/
+  /*width:50%;*/
+  /*height:200px;*/
+  /*top: 100px;*/
+  bottom: 100px; 
+  /*text-align: right;*/
+
+}
+/*#yAxis-select {
+  position: absolute;
+  top: 70%;
+  transform: translate(-50%, -50%);
+}*/

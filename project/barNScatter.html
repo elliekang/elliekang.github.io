@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="css/barNScatter.css">
+<link rel="stylesheet" href="css/brush.css">
+
+<style>
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .box {
+    font: 10px sans-serif;
+  }
+
+  .box line,
+  .box rect,
+  .box circle {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+
+  .box .center {
+    stroke-dasharray: 3,3;
+  }
+
+  .box .outlier {
+    fill: none;
+    stroke: #ccc;
+  }
+
+  .tooltip {
+  position: absolute;
+  width: 160px;
+  height: 100px;
+  background: white;
+  border:solid gray;
+  }
+
+</style>
+
+<body>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+
+  <div id="sidebar">
+
+    <a href="index.html">
+    <input type="button" value="Donut Charts"/></a>
+  <a href="circlePacking/circlePack.html">
+    <input type="button" value="Circle-Packing"/></a>
+  <a href="circlePacking/circlePack_AllNames.html">
+    <input type="button" value="Circle-Packing w/Details" /></a>
+  <a href="#">
+    <input type="button" value="Heatmap"/></a>
+    <div>&nbsp;</div>
+
+    <div ><input id="sortValue" type="button" value="Sort by Value"></div>
+    <div ><input id="sortName" type="button" value="Sort by Name"></div>
+
+    <br>
+    <h2>&nbsp; Categorical Variable: </h2>
+    <input type="checkbox" class="myCheckbox" value = "style" id="style">Type of Sushi<br>
+    <input type="checkbox" class="myCheckbox" value = "majorGroup" id="majorGroup">Major Group<br>
+    <input type="checkbox" class="myCheckbox" value = "minorGroup" id="minorGroup">Minor Group<br>
+
+    <br>
+    <h2>&nbsp; Bar Chart Variable: </h2>
+    <form action="" id="var">
+      <input type="radio" name="var" value="price" id="radioPrice" checked="checked">Price<br>
+      <input type="radio" name="var" value="oiliness" id="radioOily">Oiliness<br>
+      <input type="radio" name="var" value="eatFreq" id="radioEat">Frequency Eaten<br>
+      <input type="radio" name="var" value="shopFreq" id="radioSold">Frequency Sold in Shops<br>
+    </form>
+
+  </div>
+
+  <div id="graphs"></div>
+  <p></p>
+  <div id="scatterPlot">
+    <span id="yAxisControl">
+      <!-- <div> -->
+      <select id="yAxis-select">
+        <option value="price" selected="selected" selected>Price</option>
+        <option value="oiliness">Oiliness</option>
+        <option value="eatFreq">Frequency Eaten</option>
+        <option value="shopFreq">Frequency Sold in Shops</option>
+      </select>
+      <!-- </div> -->
+      <span class="yCheck">
+        <label for="yCheck"><input type="checkbox" id="yCheck" name="yCheck" checked> Show Box Plot</label>
+      </span>
+    </span>
+  </div>
+  <div id="xAxis-select-div">
+    <select id="xAxis-select">
+      <option value="price">Price</option>
+      <option value="oiliness" selected="selected" selected>Oiliness</option>      
+      <option value="eatFreq">Frequency Eaten</option>
+      <option value="shopFreq">Frequency Sold in Shops</option>
+    </select>
+    <span class="xCheck">
+        <label for="xCheck"><input type="checkbox" id="xCheck" name="xCheck"> Show Box Plot</label>
+    </span>
+  </div>
+
+  <script src="js/barChartFunctions.js"></script>
+  <script src="js/scatterPlotFunctions.js"></script>
+  <script src="js/boxplot/box.js"></script>
+  <script src="js/boxplot/boxHoriz.js"></script>
+  <script src="js/barNScatter.js"></script>   
+  <script src="js/detail.js"></script>  

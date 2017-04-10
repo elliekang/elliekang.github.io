@@ -1,0 +1,16 @@
+.dot.brushed {
+  stroke: orange !important;
+}
+
+#slider .background {
+  /*fill: #797979;
+  visibility: visible !important;*/
+}
+
+#slider .extent, #sbsh .extent {
+  opacity: .4;
+}
+
+#slider .resize rect {
+  /*visibility: visible !important;*/
+}

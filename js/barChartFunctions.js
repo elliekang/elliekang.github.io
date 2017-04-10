@@ -31,15 +31,16 @@ function sortValue() {
   });
 
   createBarCharts(new_data, "name");
+  createBarCharts(new_data, "minorGroup");
 
-  d3.selectAll(".myCheckbox").each(function(d) {
-      checkType = d3.select(this);
-      checked = checkType.property("checked");
-      t = checkType.property("value");
-      if(checked){
-        createBarCharts(new_data, t);
-      }
-  });
+  // d3.selectAll(".myCheckbox").each(function(d) {
+  //     checkType = d3.select(this);
+  //     checked = checkType.property("checked");
+  //     t = checkType.property("value");
+  //     if(checked){
+  //       createBarCharts(new_data, t);
+  //     }
+  // });
 }
 function sortName() {
   //sorting name graph

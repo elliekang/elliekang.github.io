@@ -54,6 +54,10 @@ function sortName() {
   // });
   // createBarCharts(new_data1, "name");
 
+  var aggregated_data = aggregateByType(data_all, "name");
+  aggregated_data.sortKeys(d3.ascending);
+  createBarCharts(data_all, t, aggregated_data);
+
   d3.selectAll(".myCheckbox").each(function(d) {
       checkType = d3.select(this);
       checked = checkType.property("checked");

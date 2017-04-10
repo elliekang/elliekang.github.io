@@ -71,7 +71,7 @@ function start() {
       d['name'] =  capitalize_words(d['name'].replace(/[^a-zA-Z]+/g, " "))
     })
     data_all = data;
-    aggregated_data = aggregateByType(data, barType);
+    aggregated_data = aggregateByType(data, "name");
     createBarCharts(data, "name", aggregated_data);
     createScatterPlot();
 

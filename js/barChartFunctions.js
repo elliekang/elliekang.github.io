@@ -25,10 +25,6 @@ function removeOneBarChart(svgID) {
 
 function sortValue() {
   // sort highest to lowest
-
-  // new_data = data_all.sort(function(item1, item2) {
-  //   return item2[barVar] - item1[barVar];
-  // });
   var aggregated_data = aggregateByType(data_all, "name", "value");
   createBarCharts(data_all, "name", aggregated_data);
 
@@ -151,7 +147,8 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
 
 function updatedBarVar() {
   barVar = document.getElementById("var").elements.namedItem("var").value;
-  createBarCharts(data_all, "name");
+  var aggregated_data1 = aggregateByType(data_all, "name", "none");
+  createBarCharts(data_all, "name", aggregated_data1);
   d3.selectAll(".myCheckbox").each(function(d) {
     checkType = d3.select(this);
     checked = checkType.property("checked");

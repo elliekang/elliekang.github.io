@@ -89,7 +89,18 @@ function capitalize_words(str) {
 function aggregateByType(data, barType, sort_condition) {
   var avgVar;
   if (sort_condition == "name") {
-    avgVar = d3.nest().key(function(d) { return d[barType]; })
+    avgVar = d3.nest().key(function(d) { 
+      // return d[barType]; 
+        if (barType == "style") {
+          return sushi_style(d);
+        } else if (barType == "majorGroup") {
+          return major_group(d);
+        } else if (barType == "minorGroup") {
+          return minor_group(d);
+        } else {
+          return d[barType]; 
+        }
+    })
     .sortKeys(d3.ascending)
     .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
     .entries(data);
@@ -106,13 +117,13 @@ function aggregateByType(data, barType, sort_condition) {
 
   avgVar.forEach(function(d) {
       d[barType] = d.key;
-      if (barType == "style") {
-        d[barType] = sushi_style(d);
-      } else if (barType == "majorGroup") {
-        d[barType] = major_group(d);
-      } else if (barType == "minorGroup") {
-        d[barType] = minor_group(d);
-      }
+      // if (barType == "style") {
+      //   d[barType] = sushi_style(d);
+      // } else if (barType == "majorGroup") {
+      //   d[barType] = major_group(d);
+      // } else if (barType == "minorGroup") {
+      //   d[barType] = minor_group(d);
+      // }
       d[barVar] = d.values;
   });
   return avgVar;

@@ -30,7 +30,7 @@ function sortValue() {
   //   return item2[barVar] - item1[barVar];
   // });
   var aggregated_data = aggregateByType(data_all, "name", "value");
-  createBarCharts(new_data, "name", aggregated_data);
+  createBarCharts(data_all, "name", aggregated_data);
 }
 
 function sortName() {

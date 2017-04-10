@@ -30,7 +30,7 @@ function sortValue() {
     return item2[barVar] - item1[barVar];
   });
 
-  createBarCharts(new_data, "name");
+  // createBarCharts(new_data, "name");
   createBarCharts(new_data, "minorGroup");
 
   // d3.selectAll(".myCheckbox").each(function(d) {
@@ -94,7 +94,6 @@ function sortName() {
           }
           return 0;
         });
-        console.log(new_data2);
         createBarCharts(new_data2, t);
       }
   });

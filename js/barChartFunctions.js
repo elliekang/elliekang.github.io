@@ -107,13 +107,13 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
     // console.log(data);
 
     // create svg
-    var svg = d3.select(function() {
-      if (barType == "name") {
-        return "#graphs";
-      } else {
-        return "#additional_graphs";
-      }
-    }).append("svg") // create an svg for each row
+    var svg;
+    if (barType == "name") {
+      svg = d3.select("#graphs");
+    } else {
+      svg = d3.select("#additional_graphs");
+    }
+    svg.append("svg") // create an svg for each row
       .attr("id", svgID)
       .attr("width", wid)
       .attr("height", hei);

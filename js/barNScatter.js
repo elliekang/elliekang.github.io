@@ -91,16 +91,16 @@ function aggregateByType(data, barType, sort_condition) {
   if (sort_condition == "name") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d);})
     .sortKeys(d3.ascending)
-    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+    .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })
     .entries(data);
   } else if (sort_condition == "value") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
-    .sortValues(function(item1, item2) {return item2[barVar] - item1[barVar];})
-    .entries(data);
+    .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })
+    .entries(data)
+    .sort(function(item1, item2) {return item2[barVar] - item1[barVar];});
   } else {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(v) { return d3.sum(v, function(d) { return d[barVar]; }); })
+    .rollup(function(v) { return d3.mean(v, function(d) { return d[barVar]; }); })
     .entries(data);
   }
 

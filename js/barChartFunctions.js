@@ -31,26 +31,19 @@ function sortValue() {
   // });
   var aggregated_data = aggregateByType(data_all, "name", "value");
   createBarCharts(data_all, "name", aggregated_data);
+
+  d3.selectAll(".myCheckbox").each(function(d) {
+      checkType = d3.select(this);
+      checked = checkType.property("checked");
+      t = checkType.property("value");
+      if(checked){
+        var aggregated_data = aggregateByType(data_all, t, "value");
+        createBarCharts(data_all, t, aggregated_data);
+      }
+  });
 }
 
 function sortName() {
-  //sorting name graph
-  // var new_data1 = data_all.sort(function(a, b) {
-  //   var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-  //   var nameB = b.name.toUpperCase(); // ignore upper and lowercase
-
-  //   if (nameA < nameB) {
-  //     return -1;
-  //   }
-  //   if (nameA > nameB) {
-  //     return 1;
-  //   }
-
-  //   // names must be equal then
-  //   return 0;
-  // });
-  // createBarCharts(new_data1, "name");
-
   var aggregated_data = aggregateByType(data_all, "name", "name");
   createBarCharts(data_all, "name", aggregated_data);
 

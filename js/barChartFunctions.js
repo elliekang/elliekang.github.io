@@ -25,13 +25,10 @@ function removeOneBarChart(svgID) {
 
 function sortValue() {
   // sort highest to lowest
-  // console.log(data_all);
 
   new_data = data_all.sort(function(item1, item2) {
     return item2[barVar] - item1[barVar];
   });
-
-  // console.log(new_data);
 
   createBarCharts(new_data, "name");
 
@@ -46,21 +43,21 @@ function sortValue() {
 }
 function sortName() {
   //sorting name graph
-  var new_data1 = data_all.sort(function(a, b) {
-    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  // var new_data1 = data_all.sort(function(a, b) {
+  //   var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  //   var nameB = b.name.toUpperCase(); // ignore upper and lowercase
 
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
+  //   if (nameA < nameB) {
+  //     return -1;
+  //   }
+  //   if (nameA > nameB) {
+  //     return 1;
+  //   }
 
-    // names must be equal then
-    return 0;
-  });
-  createBarCharts(new_data1, "name");
+  //   // names must be equal then
+  //   return 0;
+  // });
+  // createBarCharts(new_data1, "name");
 
   d3.selectAll(".myCheckbox").each(function(d) {
       checkType = d3.select(this);
@@ -103,7 +100,7 @@ function sortName() {
 }
 
 function createBarCharts(data, barType) {
-  // removeBarCharts(barType);
+  removeBarCharts(barType);
 
   d3.select('#graphs')
     .append('text')
@@ -230,8 +227,9 @@ function updatedBarType() {
     t = checkType.property("value");
     if(checked){
       createBarCharts(data_all, t);
-    } else {
-      removeBarCharts(t);
-    }
+    } 
+    // else {
+    //   removeBarCharts(t);
+    // }
   });
 }

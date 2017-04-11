@@ -167,9 +167,11 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
             console.log(d[barVar]);
             return xScale(d[barVar]);
         })
-        .style("fill", "steelblue")
-        .on("mouseover", function(d) {hover_tip(d);})
+        .style("fill", "steelblue");
+      if(barType == "name") {
+        svg.on("mouseover", function(d) {hover_tip(d);})
         .on("mouseout", function(d) {out_tip(d)});
+      }
 }
 
 function updatedBarVar() {

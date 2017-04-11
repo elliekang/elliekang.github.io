@@ -54,17 +54,9 @@ function sortName() {
   });
 }
 
-function createBarCharts(data, barType, avgVar) {
-  removeBarCharts(barType);
-
-  var container;
+function generateHeaders(barType) {
   if (barType == "name") {
-    container = d3.select("#graphs");
-  } else {
-    container = d3.select("#additional_graphs");
-  }
-  // container.append('text')
-  d3.select("#additional_graphs")
+    d3.select("#graphs")
     .append('text')
     .style("font", "20px times")
     .style("font-weight", "bold") 
@@ -72,6 +64,22 @@ function createBarCharts(data, barType, avgVar) {
     .attr("id", barType + "txt")
     .attr("padding", "20px")
     .html("<br/>" + barType +" vs. " + barVar +  "<br/>");
+  } else {
+    d3.select("#additional_graphs")
+    .append('text')
+    .style("font", "20px times")
+    .style("font-weight", "bold") 
+    .attr('fill', '#000')
+    .attr("id", barType + "txt")
+    .attr("padding", "20px")
+    .html("<br/>" + barType +" vs. " + barVar +  "<br/>");
+  }
+}
+
+function createBarCharts(data, barType, avgVar) {
+  removeBarCharts(barType);
+
+  generateHeaders(barType);
 
   xScale.domain(varDomains[barVar]); // change var later
 

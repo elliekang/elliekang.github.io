@@ -164,7 +164,7 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
             return  yScale.rangeBand();
         })
         .attr('width', function(d) {
-            console.log(d[barVar]);
+            // console.log(d[barVar]);
             return xScale(d[barVar]);
         })
         .style("fill", "steelblue")

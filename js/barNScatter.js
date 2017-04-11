@@ -107,11 +107,11 @@ function aggregateByType(data, barType, sort_condition) {
   avgVar.forEach(function(d) {
       d[barType] = d.key;
       d[barVar] = d.values;
-      // Object.keys(d).forEach(function(key,index) {
-      //   if (key != barVar && key != barType) {
-      //       d[key] = d[key];
-      //   }
-      // });
+      Object.keys(d).forEach(function(key,index) {
+        if (key != barVar && key != barType) {
+            d[key] = d[key];
+        }
+      });
   });
   console.log(avgVar);
   return avgVar;

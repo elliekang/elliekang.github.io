@@ -90,6 +90,17 @@ function createBarCharts(data, barType, avgVar) {
     partition_num = numCharts;
   }
 
+  // data.forEach(function(d) {
+  //   var entryArr = d3.entries(d);
+  //   for (var i = 0; i < entryArr.length; i++) {
+  //       var elem = entryArr[i];
+  //       var k = elem.key;
+  //       if (k != barType && k != barVar) {
+  //         d[k] = elem.value;
+  //       }
+  //     }
+  // });
+
   var part_size = avgVar.length/partition_num;
   for (var i=0; i<partition_num; i++) {
     var startIndex = part_size*i;

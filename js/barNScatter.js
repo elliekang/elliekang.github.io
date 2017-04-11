@@ -91,33 +91,33 @@ function aggregateByType(data, barType, sort_condition) {
   if (sort_condition == "name") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d);})
     .sortKeys(d3.ascending)
-    .rollup(function(d) { 
+    .rollup(function(v) { 
       return {
-        oiliness: d.oiliness,
-        eatFreq: d.eatFreq,
-        price: d.price,
-        shopFreq: d.shopFreq,
+        oiliness: v.oiliness,
+        eatFreq: v.eatFreq,
+        price: v.price,
+        shopFreq: v.shopFreq,
         avg: d3.mean(v, function(d) { return d[barVar]; })
     }; })
     .entries(data);
   } else if (sort_condition == "value") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(d) { return {
-        oiliness: d.oiliness,
-        eatFreq: d.eatFreq,
-        price: d.price,
-        shopFreq: d.shopFreq,
+    .rollup(function(v) { return {
+        oiliness: v.oiliness,
+        eatFreq: v.eatFreq,
+        price: v.price,
+        shopFreq: v.shopFreq,
         avg: d3.mean(v, function(d) { return d[barVar]; })
     }; })
     .entries(data)
     .sort(function(a, b){ return d3.descending(a.values, b.values); });
   } else {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(d) { return {
-        oiliness: d.oiliness,
-        eatFreq: d.eatFreq,
-        price: d.price,
-        shopFreq: d.shopFreq,
+    .rollup(function(v) { return {
+        oiliness: v.oiliness,
+        eatFreq: v.eatFreq,
+        price: v.price,
+        shopFreq: v.shopFreq,
         avg: d3.mean(v, function(d) { return d[barVar]; })
     }; })
     .entries(data);

@@ -91,7 +91,7 @@ function aggregateByType(data, barType, sort_condition) {
   if (sort_condition == "name") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d);})
     .sortKeys(d3.ascending)
-    .rollup(function(v) { 
+    .rollup(function(d) { 
       return {
         oiliness: d.oiliness,
         eatFreq: d.eatFreq,
@@ -102,7 +102,7 @@ function aggregateByType(data, barType, sort_condition) {
     .entries(data);
   } else if (sort_condition == "value") {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(v) { return {
+    .rollup(function(d) { return {
         oiliness: d.oiliness,
         eatFreq: d.eatFreq,
         price: d.price,
@@ -113,7 +113,7 @@ function aggregateByType(data, barType, sort_condition) {
     .sort(function(a, b){ return d3.descending(a.values, b.values); });
   } else {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
-    .rollup(function(v) { return {
+    .rollup(function(d) { return {
         oiliness: d.oiliness,
         eatFreq: d.eatFreq,
         price: d.price,

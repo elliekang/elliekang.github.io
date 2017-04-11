@@ -114,8 +114,8 @@ function createScatterPlot() {
       d3.select("#graphs").selectAll(".bar")
         .transition()
         .style("fill", function(d) {
-          console.log(d[xVar]);
-          console.log(d[yVar]);
+          console.log("xvar" + d[xVar]);
+          console.log("yvar" + d[yVar]);
           return hit_test(d)? highlightCol : "steelblue"
         })
     })

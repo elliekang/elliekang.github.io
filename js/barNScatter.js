@@ -114,10 +114,10 @@ function aggregateByType(data, barType, sort_condition) {
   } else {
     avgVar = d3.nest().key(function(d) { return convert_code_to_str(barType, d); })
     .rollup(function(v) { return {
-        oiliness: v["oiliness"],
-        eatFreq: v["eatFreq"],
-        price: v["price"],
-        shopFreq: v["shopFreq"],
+        oiliness: d3.mean(v, function(d) { return d["oiliness"]; }),
+        eatFreq: d3.mean(v, function(d) { return d["eatFreq"]; }),
+        price: d3.mean(v, function(d) { return d["price"]; }),
+        shopFreq: d3.mean(v, function(d) { return d["shopFreq"]; }),
         avg: d3.mean(v, function(d) { return d[barVar]; })
     }; })
     .entries(data);

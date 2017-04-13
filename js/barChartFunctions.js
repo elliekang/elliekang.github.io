@@ -131,11 +131,6 @@ function createOneBarChart(yScale, data, yAxis, svgID, barType) {
       .attr("width", wid)
       .attr("height", hei);
     }
-    // var svg = d3.select("#additional_graphs")
-    //   .append("svg") // create an svg for each row
-    //   .attr("id", svgID)
-    //   .attr("width", wid)
-    //   .attr("height", hei);
     barGroup = svg.append('g');
 
     // Append the names axis to the graph
